@@ -54,7 +54,7 @@ FOREIGN KEY (Tid) REFERENCES Tasks(tid)
 CREATE TABLE PaymentMethods (
   cord VARCHAR(10),
   cardnumber VARCHAR(16),
-  expdate DATE,
+  expdate DATE, 
   cname VARCHAR(60),
   FOREIGN KEY (cname) REFERENCES Customers(cname),
   PRIMARY KEY (cname, cardnumber)
@@ -68,7 +68,7 @@ CREATE TABLE ContactMethods (
 
 CREATE TABLE Freelancers (
 fname		varchar(60),
-Name 		varchar(60),
+Name 		varchar(60), 
 Gender		varchar(10),
 PhoneNumber	VARCHAR(20),
 AreaCode 	VARCHAR(5), 
