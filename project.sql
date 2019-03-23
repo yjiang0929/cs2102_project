@@ -23,16 +23,25 @@ CREATE TABLE Tasks (
 	description		VARCHAR(200),
 	tdate			DATE NOT NULL, -- task date
 	lid				INTEGER NOT NULL,
+	Specid			INTEGER,
 	PRIMARY KEY (tid),
+	FOREIGN KEY (Specid) REFERENCES Specializations(Specid),
 	FOREIGN KEY (lid) REFERENCES Locations(lid)
 );
 
 
 create table Contracts(
-Cid 				integer primary key,
-Date 				date,
-PayAmount 			integer,
-Tid integer references Tasks(tid));
+Cid 		integer,
+Date 		date,
+PayAmount 	integer,
+Tid 		integer,
+fname 		varchar(60),
+cname 		varchar(60),
+PRIMARY KEY Cid,
+FOREIGN KEY tid REFERENCES Tasks(tid),
+FOREIGN KEY fname REFERENCES Freelancers(fname),
+FOREIGN KEY cname REFERENCES Customers(cname)
+);
 
 CREATE TABLE Customers (
   cname 			VARCHAR(60),
@@ -68,24 +77,29 @@ CREATE TABLE ContactMethods (
 );
 
 CREATE TABLE Freelancers (
-fname				varchar(60),
-Name 				varchar(60), 
-Gender				varchar(10),
-PhoneNumber			VARCHAR(20),
-AreaCode 			VARCHAR(5), 
-Cid	 				integer,
-Tid 				integer,
-Specid 				integer,
+fname		varchar(60),
+Name 		varchar(60), 
+Gender		varchar(10),
+PhoneNumber	VARCHAR(20),
+AreaCode 	VARCHAR(5), 
+-- same as tid, doesnt make sense
+--Cid 		integer,
+-- will create another table to resolve this, it doesnt make sense to link each freelancer to only one task
+--Tid 		integer,
+Specid 		integer,
 PRIMARY KEY (fname),
 FOREIGN KEY (PhoneNumber, areacode) REFERENCES ContactMethods(phonenumber,areacode),
-FOREIGN KEY (Cid) REFERENCES Contracts(Cid),
-FOREIGN KEY (Tid) REFERENCES Tasks(tid),
+-- mentioned above
+--FOREIGN KEY (Cid) REFERENCES Contracts(Cid),
+-- deleted because another table BidTasks will resolve this
+--FOREIGN KEY (Tid) REFERENCES Tasks(tid),
 FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
 );
 
-CREATE TABLE Bidtasks (
-fname 				varchar(60),
-tid 				integer,
+
+CREATE TABLE BidTasks (
+fname 		varchar(60),
+tid 		integer,
 FOREIGN KEY (tid) REFERENCES Tasks(tid),
 FOREIGN KEY (fname) REFERENCES Freelancers(fname)
 );
