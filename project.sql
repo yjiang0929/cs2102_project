@@ -29,53 +29,53 @@ CREATE TABLE Tasks (
 
 
 create table Contracts(
-Cid integer primary key,
-Date date,
-PayAmount integer,
+Cid 				integer primary key,
+Date 				date,
+PayAmount 			integer,
 Tid integer references Tasks(tid));
 
 CREATE TABLE Customers (
-  cname VARCHAR(60),
-  firstname VARCHAR(30),
-  lastname VARCHAR(30),
-  gender VARCHAR(10),
+  cname 			VARCHAR(60),
+  firstname 		VARCHAR(30),
+  lastname 			VARCHAR(30),
+  gender 			VARCHAR(10),
   PRIMARY KEY (cname)
 );
 
 
 CREATE TABLE Specializations (
-Specid 		integer,	 
+Specid 				integer,	 
 DifficultyLevel 	varchar(10),
-Category 	varchar(60),
-Tid 		integer,		 
+Category 			varchar(60),
+Tid 				integer,		 
 PRIMARY KEY (Specid),
 FOREIGN KEY (Tid) REFERENCES Tasks(tid)
 );
 
 CREATE TABLE PaymentMethods (
-  cord VARCHAR(10),
-  cardnumber VARCHAR(16),
-  expdate DATE, 
-  cname VARCHAR(60),
+  cord 				VARCHAR(10),
+  cardnumber 		VARCHAR(16),
+  expdate 			DATE, 
+  cname 			VARCHAR(60),
   FOREIGN KEY (cname) REFERENCES Customers(cname),
   PRIMARY KEY (cname, cardnumber)
 );
 
 CREATE TABLE ContactMethods (
-  phonenumber VARCHAR(20),
-  areacode VARCHAR(5),
+  phonenumber 		VARCHAR(20),
+  areacode 			VARCHAR(5),
   PRIMARY KEY (phonenumber, areacode)
 );
 
 CREATE TABLE Freelancers (
-fname		varchar(60),
-Name 		varchar(60), 
-Gender		varchar(10),
-PhoneNumber	VARCHAR(20),
-AreaCode 	VARCHAR(5), 
-Cid 		integer,
-Tid 		integer,
-Specid 		integer,
+fname				varchar(60),
+Name 				varchar(60), 
+Gender				varchar(10),
+PhoneNumber			VARCHAR(20),
+AreaCode 			VARCHAR(5), 
+Cid	 				integer,
+Tid 				integer,
+Specid 				integer,
 PRIMARY KEY (fname),
 FOREIGN KEY (PhoneNumber, areacode) REFERENCES ContactMethods(phonenumber,areacode),
 FOREIGN KEY (Cid) REFERENCES Contracts(Cid),
@@ -83,11 +83,18 @@ FOREIGN KEY (Tid) REFERENCES Tasks(tid),
 FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
 );
 
+CREATE TABLE Bidtasks (
+fname 				varchar(60),
+tid 				integer,
+FOREIGN KEY (tid) REFERENCES Tasks(tid),
+FOREIGN KEY (fname) REFERENCES Freelancers(fname)
+);
+
 create table Reviews (
-cname varchar(100) references Customers(cname),
-fname varchar(100) references Freelancers(fname),
-rating varchar(100),
-Date date,
+cname 				varchar(100) references Customers(cname),
+fname 				varchar(100) references Freelancers(fname),
+rating 				varchar(100),
+Date 				date,
 primary key (cname, fname)
 );
 
@@ -99,3 +106,33 @@ CREATE TABLE Supervisors (
 	PRIMARY KEY (sid),
 	FOREIGN KEY (tid) REFERENCES Tasks(tid)
 );
+
+
+-- When Freelancer bids for a task, we need to make sure that he has the specialization required for the task
+CREATE OR REPLACE FUNCTION check_spec()
+RETURNS TRIGGER AS 
+$$
+DECLARE count NUMERIC;
+BEGIN
+	SELECT Specid INTO count1
+	FROM Tasks
+	WHERE NEW.tid = Tasks.Tid
+	SELECT Specid INTO count2
+	FROM Freelancers 
+	WHERE NEW.fname = Freelancers.fname;
+	IF count1 == count2 THEN
+		RETURN NEW;
+	ELSE 
+		RETURN NULL;
+	END IF;
+END;
+
+$$ 
+LANGUAGE plpgsql;
+
+CREATE TRIGGER spec_check
+BEFORE INSERT OR UPDATE
+ON Bidtasks					-- Specialization
+FOR EACH ROW 
+EXECUTE PROCEDURE check_spec();	
+
