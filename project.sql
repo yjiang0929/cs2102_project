@@ -1,4 +1,4 @@
-#cs2102 project
+#cs2102 Project
 drop table if exists Contracts cascade;
 drop table if exists Reviews cascade;
 drop table if exists Freelancers cascade;
