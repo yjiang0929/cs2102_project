@@ -100,6 +100,7 @@ FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
 CREATE TABLE BidTasks (
 fname 		varchar(60),
 tid 		integer,
+bidPrice	integer,
 FOREIGN KEY (tid) REFERENCES Tasks(tid),
 FOREIGN KEY (fname) REFERENCES Freelancers(fname)
 );
@@ -120,33 +121,4 @@ CREATE TABLE Supervisors (
 	PRIMARY KEY (sid),
 	FOREIGN KEY (tid) REFERENCES Tasks(tid)
 );
-
-
--- When Freelancer bids for a task, we need to make sure that he has the specialization required for the task
-CREATE OR REPLACE FUNCTION check_spec()
-RETURNS TRIGGER AS 
-$$
-DECLARE count NUMERIC;
-BEGIN
-	SELECT Specid INTO count1
-	FROM Tasks
-	WHERE NEW.tid = Tasks.Tid
-	SELECT Specid INTO count2
-	FROM Freelancers 
-	WHERE NEW.fname = Freelancers.fname;
-	IF count1 == count2 THEN
-		RETURN NEW;
-	ELSE 
-		RETURN NULL;
-	END IF;
-END;
-
-$$ 
-LANGUAGE plpgsql;
-
-CREATE TRIGGER spec_check
-BEFORE INSERT OR UPDATE
-ON Bidtasks					-- Specialization
-FOR EACH ROW 
-EXECUTE PROCEDURE check_spec();	
 
