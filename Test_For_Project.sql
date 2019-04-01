@@ -8,6 +8,7 @@ delete from ContactMethods;
 delete from Freelancers;
 delete from Reviews;
 delete from Supervisors;
+delete from BidTasks;
 
 insert into Locations (lid, lname) values
 (1, 'A'),
@@ -45,9 +46,9 @@ insert into ContactMethods (phonenumber, areacode) values
 ('1234567', '11111'),
 ('7654321', '22222');
 
-insert into Freelancers (fname, Name, Gender, PhonNumber, AreaCode, Cid, Tid, Specid) values
-('No.1', 'Licheng Sun', 'M', '1234567', '11111', 102, 02, 1),
-('No.2', 'Haoyang Li', 'M', '7654321', '22222', 103, 03, 2);
+insert into Freelancers (fname, Name, Gender, PhoneNumber, AreaCode, Specid) values
+('No.1', 'Licheng Sun', 'M', '1234567', '11111', 1),
+('No.2', 'Haoyang Li', 'M', '7654321', '22222', 2);
 
 insert into Reviews (cname, fname, rating, Date) values
 ('Jiang Yichen', 'No.1', 'A', '2019-12-31'),
@@ -56,3 +57,9 @@ insert into Reviews (cname, fname, rating, Date) values
 insert into Supervisors (sid, sname, sgender, tid) values
 (1, 'Chan', 'M', 02),
 (2, 'Adi', 'M', 03);
+
+insert into BidTasks (fname, tid, bidPrice) values
+('No.1', 01, 100),
+('No.1', 02, 200),
+('No.2', 02, 300),
+('No.2', 03, 300);

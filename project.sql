@@ -1,4 +1,4 @@
-#cs2102 Project
+--cs2102 Project
 drop table if exists Contracts cascade;
 drop table if exists Reviews cascade;
 drop table if exists Freelancers cascade;
@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS Supervisors CASCADE;
 DROP TABLE IF EXISTS Customers CASCADE;
 DROP TABLE IF EXISTS PaymentMethods CASCADE;
 DROP TABLE IF EXISTS ContactMethods CASCADE;
-
+drop table if exists Bidtasks cascade;
 
 CREATE TABLE Locations (
 	lid 			INTEGER NOT NULL,
@@ -17,6 +17,13 @@ CREATE TABLE Locations (
 	PRIMARY KEY (lid)
 );
 
+CREATE TABLE Specializations (
+Specid 				integer,	 
+DifficultyLevel 	varchar(10),
+Category 			varchar(60),
+Tid 				integer,		 
+PRIMARY KEY (Specid)
+);
 
 CREATE TABLE Tasks (
 	tid				INTEGER NOT NULL, -- task id
@@ -30,19 +37,6 @@ CREATE TABLE Tasks (
 );
 
 
-create table Contracts(
-Cid 		integer,
-Date 		date,
-PayAmount 	integer,
-Tid 		integer,
-fname 		varchar(60),
-cname 		varchar(60),
-PRIMARY KEY Cid,
-FOREIGN KEY tid REFERENCES Tasks(tid),
-FOREIGN KEY fname REFERENCES Freelancers(fname),
-FOREIGN KEY cname REFERENCES Customers(cname)
-);
-
 CREATE TABLE Customers (
   cname 			VARCHAR(60),
   firstname 		VARCHAR(30),
@@ -51,15 +45,6 @@ CREATE TABLE Customers (
   PRIMARY KEY (cname)
 );
 
-
-CREATE TABLE Specializations (
-Specid 				integer,	 
-DifficultyLevel 	varchar(10),
-Category 			varchar(60),
-Tid 				integer,		 
-PRIMARY KEY (Specid),
-FOREIGN KEY (Tid) REFERENCES Tasks(tid)
-);
 
 CREATE TABLE PaymentMethods (
   cord 				VARCHAR(10),
@@ -96,6 +81,18 @@ FOREIGN KEY (PhoneNumber, areacode) REFERENCES ContactMethods(phonenumber,areaco
 FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
 );
 
+create table Contracts(
+Cid 		integer,
+Date 		date,
+PayAmount 	integer,
+Tid 		integer,
+fname 		varchar(60),
+cname 		varchar(60),
+PRIMARY KEY (Cid),
+FOREIGN KEY (Tid) REFERENCES Tasks(tid),
+FOREIGN KEY (fname) REFERENCES Freelancers(fname),
+FOREIGN KEY (cname) REFERENCES Customers(cname)
+);
 
 CREATE TABLE BidTasks (
 fname 		varchar(60),
