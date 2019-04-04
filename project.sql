@@ -66,7 +66,8 @@ CREATE TABLE ContactMethods (
 
 CREATE TABLE Freelancers (
 fname		varchar(60),
-Name 		varchar(60),
+firstname 		varchar(60),
+lastname  varchar(60),
 Gender		varchar(10),
 PhoneNumber	VARCHAR(20),
 AreaCode 	VARCHAR(5),
@@ -86,7 +87,7 @@ FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
 
 create table Contracts(
 Cid 		integer,
-Date 		date,
+Date 		varchar(10),
 PayAmount 	integer,
 Tid 		integer,
 fname 		varchar(60),
@@ -108,9 +109,10 @@ FOREIGN KEY (fname) REFERENCES Freelancers(fname)
 create table Reviews (
 cname 				varchar(100) references Customers(cname),
 fname 				varchar(100) references Freelancers(fname),
-rating 				varchar(100),
-Date 				date,
-primary key (cname, fname)
+rating 				integer,
+review				varchar(100),
+rdate 				varchar(10),
+primary key (cname, fname, rdate)
 );
 
 CREATE TABLE Supervisors (
