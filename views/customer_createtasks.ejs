@@ -15,6 +15,9 @@
 
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="javascripts/createTaskScript.js"></script>
+
   </head>
   <body id="page-top">
 
@@ -124,7 +127,7 @@
             </button>
 
             <!-- Topbar Search -->
-            <a class="d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-text">
+            <a id='title' class="d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-text">
               Welcome, Customer!
             </a>
 
@@ -187,6 +190,17 @@
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+
+                <script>
+                  (function() {
+                    window.addEventListener('load', function() {
+                      var forms = [document.getElementById('html_form')];
+                      var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('submit', check, false);
+                      });
+                    }, false);
+                  })();
+                </script>
               </div>
             </div>
           </div>
@@ -234,13 +248,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="assets/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="assets/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="assets/js/demo/chart-area-demo.js"></script>
-    <script src="assets/js/demo/chart-pie-demo.js"></script>
 
   </body>
 

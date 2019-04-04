@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/',function(req, res, next){
-  print(req)
+  console.log(req);
   var tid = req.body.tid;
   var description = req.body.description;
   var tdate = req.body.tdate;
