@@ -66,13 +66,6 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="/customer_signcontracts" >
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Sign Contracts</span>
-          </a>
-        </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -160,6 +153,8 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
               <h1 class="h3 mb-0 text-gray-800">View Task</h1>
             </div>
+            <p class="mb-4">To view bidders on each task, simply press on the row with your task!</p>
+
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
@@ -189,7 +184,7 @@
                     </tfoot>
                     <tbody>
                       <% for (var i=0; i<data.length; i++) {%>
-                      <tr>
+                      <tr onclick="document.location='/customer_signcontracts'">
                         <td><%= data[i].tid%></td>
                         <td><%= data[i].description%></td>
                         <td><%= data[i].tdate%></td>

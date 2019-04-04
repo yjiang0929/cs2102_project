@@ -16,7 +16,7 @@
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="javascripts/writeReviewScript.js"></script>
+    <script src="javascripts/checkScript.js"></script>
 
   </head>
   <body id="page-top">
@@ -66,13 +66,6 @@
           <a class="nav-link collapsed" href="/customer_viewtasks" >
             <i class="fas fa-fw fa-wrench"></i>
             <span>View Task</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="/customer_signcontracts" >
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Sign Contracts</span>
           </a>
         </li>
 
@@ -192,12 +185,13 @@
                     window.addEventListener('load', function() {
                       var forms = [document.getElementById('html_form')];
                       var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', check, false);
+                        form.addEventListener('submit', checkReview, false);
                       });
                     }, false);
                   })();
                 </script>
               </div>
+
           </div>
           <!-- /.container-fluid -->
 
