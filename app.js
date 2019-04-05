@@ -7,6 +7,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var index_supervisor = require ('./routes/index_supervisor');
+var supervisor_view_all = require ('./routes/supervisor_view_all_contracts');
+var supervisor_view_my = require ('./routes/supervisor_view_my_contracts');
+
 var app = express();
 
 // view engine setup
@@ -21,6 +25,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use('/index_supervisor', index_supervisor);
+app.use('/supervisor_view_all', supervisor_view_all);
+app.use('/supervisor_view_my', supervisor_view_my);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
