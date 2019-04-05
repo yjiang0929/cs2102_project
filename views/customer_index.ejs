@@ -161,7 +161,39 @@
                     <h6 class="m-0 font-weight-bold text-primary">My Contracts</h6>
                   </div>
                   <div class="card-body">
-                    The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Contract ID</th>
+                            <th>Task ID</th>
+                            <th>Freelancer Name</th>
+                            <th>Contract Date</th>
+                            <th>Payment Amount</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>Contract ID</th>
+                            <th>Task ID</th>
+                            <th>Freelancer Name</th>
+                            <th>Contract Date</th>
+                            <th>Payment Amount</th>
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                          <% for (var i=0; i<data.length; i++) {%>
+                          <tr>
+                            <td><%= data[i].cid%></td>
+                            <td><%= data[i].tid%></td>
+                            <td><%= data[i].fname%></td>
+                            <td><%= data[i].date%></td>
+                            <td><%= data[i].payamount%></td>
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>

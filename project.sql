@@ -60,9 +60,11 @@ CREATE TABLE PaymentMethods (
 );
 
 CREATE TABLE ContactMethods (
+	cname 		varchar(60),
   phonenumber 		VARCHAR(20),
   areacode 			VARCHAR(5),
-  PRIMARY KEY (phonenumber, areacode)
+  PRIMARY KEY (cname, phonenumber),
+	FOREIGN KEY (cname) REFERENCES Customers(cname),
 );
 
 CREATE TABLE Freelancers (
