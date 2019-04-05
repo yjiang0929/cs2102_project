@@ -42,12 +42,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-<<<<<<< HEAD
 app.use('/index_supervisor', index_supervisor);
 app.use('/supervisor_view_all', supervisor_view_all);
 app.use('/supervisor_view_my', supervisor_view_my);
 
-=======
 app.use('/customer_index',customerIndexRouter);
 app.use('/customer_viewtasks',customerViewTasksRouter);
 app.use('/customer_createtasks',customerCreateTasksRouter);
@@ -60,7 +58,6 @@ app.use('/freelancer_viewtasks',freelancerViewTasksRouter);
 
 app.use('/login',loginRouter);
 app.use('/register',registerRouter);
->>>>>>> d8f2cece07837333a3888875da8f6a7fc76e75c1
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
