@@ -31,6 +31,7 @@ CREATE TABLE Customers (
   firstname 		VARCHAR(30),
   lastname 			VARCHAR(30),
   gender 			VARCHAR(10),
+	password		VARCHAR(20),
   PRIMARY KEY (cname)
 );
 
@@ -71,6 +72,7 @@ lastname  varchar(60),
 Gender		varchar(10),
 PhoneNumber	VARCHAR(20),
 AreaCode 	VARCHAR(5),
+password 	VARCHAR(20),
 -- same as tid, doesnt make sense
 --Cid 		integer,
 -- will create another table to resolve this, it doesnt make sense to link each freelancer to only one task
@@ -120,6 +122,7 @@ CREATE TABLE Supervisors (
 	sname 			VARCHAR(20) NOT NULL,
 	sgender			VARCHAR(20) NOT NULL,
 	tid				INTEGER NOT NULL,
+	password		VARCHAR(20),
 	PRIMARY KEY (sid),
 	FOREIGN KEY (tid) REFERENCES Tasks(tid)
 );
