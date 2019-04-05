@@ -131,7 +131,7 @@
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/customer_index">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                   </a>
@@ -155,6 +155,26 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
               <h1 class="h3 mb-0 text-gray-800">Sign Contracts</h1>
             </div>
+
+            <FORM NAME="subtitle">
+            <INPUT TYPE="hidden" id="tid" NAME="text">
+            </FORM>
+
+            <SCRIPT LANGUAGE="javascript">
+
+            var locate = window.location
+            document.subtitle.text.value = locate
+
+            var text = document.subtitle.text.value
+
+            function delineate(str)
+            {
+            theleft = str.indexOf("=") + 1;
+            return(str.substring(theleft));
+            }
+            document.write("Task ID is " +delineate(text));
+
+            </SCRIPT>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
