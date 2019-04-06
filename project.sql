@@ -51,20 +51,19 @@ CREATE TABLE Tasks (
 
 
 CREATE TABLE PaymentMethods (
-  cord 				VARCHAR(10),
   cardnumber 		VARCHAR(16),
-  expdate 			DATE,
+  expdate 			VARCHAR(10),
+	currency		VARCHAR(12),
   cname 			VARCHAR(60),
   FOREIGN KEY (cname) REFERENCES Customers(cname),
   PRIMARY KEY (cname, cardnumber)
 );
 
 CREATE TABLE ContactMethods (
-	cname 		varchar(60),
+	name	VARCHAR(60),
   phonenumber 		VARCHAR(20),
   areacode 			VARCHAR(5),
-  PRIMARY KEY (cname, phonenumber),
-	FOREIGN KEY (cname) REFERENCES Customers(cname),
+  PRIMARY KEY (phonenumber)
 );
 
 CREATE TABLE Freelancers (
@@ -73,7 +72,6 @@ firstname 		varchar(60),
 lastname  varchar(60),
 Gender		varchar(10),
 PhoneNumber	VARCHAR(20),
-AreaCode 	VARCHAR(5),
 password 	VARCHAR(20),
 -- same as tid, doesnt make sense
 --Cid 		integer,
@@ -81,7 +79,7 @@ password 	VARCHAR(20),
 --Tid 		integer,
 Specid 		integer,
 PRIMARY KEY (fname),
-FOREIGN KEY (PhoneNumber, areacode) REFERENCES ContactMethods(phonenumber,areacode),
+FOREIGN KEY (PhoneNumber) REFERENCES ContactMethods(phonenumber),
 -- mentioned above
 --FOREIGN KEY (Cid) REFERENCES Contracts(Cid),
 -- deleted because another table BidTasks will resolve this

@@ -43,3 +43,11 @@ function checkReview(event) {
 function checkContract(event) {
 	alert("New contract created successfully!");
 }
+
+function checkContact(event) {
+	alert("New contact method created successfully!");
+}
+
+function checkPayment(event) {
+	alert("New payment method created successfully!");
+}
