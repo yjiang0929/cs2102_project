@@ -171,6 +171,41 @@
 
             <!-- Content Row -->
 
+            <!-- DataTables Example -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">My Contracts</h6>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Contract ID</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                        <th>Task ID</th>
+                        <th>Freelancer Name</th>
+                        <th>Customer Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for (var i=0; i<data.length; i++) { %>
+                      <tr>
+                        <td><%= data[i].cid%></td>
+                        <td><%= data[i].date%></td>
+                        <td><%= data[i].payamount%></td>
+                        <td><%= data[i].tid%></td>
+                        <td><%= data[i].fname%></td>
+                        <td><%= data[i].cname%></td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
           <!-- /.container-fluid -->
 
         </div>

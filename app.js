@@ -25,6 +25,7 @@ var customerMyReviewsRouter = require('./routes/customer_myreviews');
 var freelancerIndexRouter = require('./routes/freelancer_index');
 var freelancerBidTaskRouter = require('./routes/freelancer_bidtask');
 var freelancerViewContractsRouter = require('./routes/freelancer_viewcontracts');
+var freelancerViewTasksRouter = require('./routes/freelancer_viewtasks');
 var freelancerViewReviewsRouter = require('./routes/freelancer_viewreviews');
 
 var registerRouter = require('./routes/register');
@@ -72,6 +73,7 @@ app.use('/freelancer_index',freelancerIndexRouter);
 app.use('/freelancer_bidtask',freelancerBidTaskRouter);
 app.use('/freelancer_viewreviews',freelancerViewReviewsRouter);
 app.use('/freelancer_viewcontracts',freelancerViewContractsRouter);
+app.use('/freelancer_viewtasks',freelancerViewTasksRouter);
 
 app.use('/login',loginRouter);
 app.use('/register',registerRouter);
