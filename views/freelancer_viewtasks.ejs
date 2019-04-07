@@ -75,7 +75,6 @@
           </a>
         </li>
 
-
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -155,34 +154,36 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">Freelancer Reviews</h1>
+              <h1 class="h3 mb-0 text-gray-800">Available Tasks</h1>
             </div>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Reviews</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Tasks</h6>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
-                        <th>Freelancer ID</th>
-                        <th>Customer ID</th>
-                        <th>Review Date</th>
-                        <th>Rating</th>
-                        <th>Review</th>                      
+                        <th>Task ID</th>
+                        <th>Description</th>
+                        <th>Task Date</th>
+                        <th>Location</th>
+                        <th>Specialization</th>                      
+                        <th>Customer Name</th>  
                       </tr>
                     </thead>
                     <tbody>
                       <% for (var i=0; i<data.length; i++) {%>
                       <tr>
-                        <td><%= data[i].fname%></td>
+                        <td><%= data[i].tid%></td>
+                        <td><%= data[i].description%></td>
+                        <td><%= data[i].tdate%></td>
+                        <td><%= data[i].lid%></td>
+                        <td><%= data[i].specid%></td>
                         <td><%= data[i].cname%></td>
-                        <td><%= data[i].rdate%></td>
-                        <td><%= data[i].rating%></td>
-                        <td><%= data[i].review%></td>
                       </tr>
                       <% } %>
                     </tbody>
@@ -195,8 +196,8 @@
               <div class ="col-xl-6 col-lg-6">
                 <form id="html_form" action="customer_signcontracts" role="form" method="link">
                   <div class="form-group">
-                    <label for="tid">Freelancer ID</label>
-                    <input type="text" class="form-control" id="tid" name="tid" aria-describedby="matricHelp" placeholder="Enter the Freelancer ID that you want to view">
+                    <label for="tid">Task ID</label>
+                    <input type="text" class="form-control" id="tid" name="tid" aria-describedby="matricHelp" placeholder="Enter the Task ID that you want to view">
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

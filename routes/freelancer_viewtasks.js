@@ -15,7 +15,7 @@ var sql_query = 'SELECT * FROM freelancers'
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	  pool.query(sql_query, (err, data) => {
-  res.render('freelancer_viewcontracts', { title: 'CS2102 Project', data:data.rows});
+  res.render('freelancer_viewtasks', { title: 'CS2102 Project', data:data.rows});
 	});
 });
 
