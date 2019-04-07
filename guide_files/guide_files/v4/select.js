@@ -5,19 +5,18 @@ const { Pool } = require('pg')
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-  database: 'cs2102',
+  database: 'postgres',
   password: '********',
   port: 5432,
 })
 
-var sql_query = 'SELECT * FROM freelancers'
+/* SQL Query */
+var sql_query = 'SELECT * FROM student_info';
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-	  pool.query(sql_query, (err, data) => {
-  res.render('freelancer_viewreviews', { title: 'CS2102 Project', data:data.rows});
+	pool.query(sql_query, (err, data) => {
+		res.render('select', { title: 'Database Connect', data: data.rows });
 	});
 });
-
 
 module.exports = router;
