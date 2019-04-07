@@ -63,7 +63,7 @@ CREATE TABLE ContactMethods (
 	name	VARCHAR(60),
   phonenumber 		VARCHAR(20),
   areacode 			VARCHAR(5),
-  PRIMARY KEY (phonenumber)
+  PRIMARY KEY (name, phonenumber)
 );
 
 CREATE TABLE Freelancers (
@@ -79,7 +79,7 @@ password 	VARCHAR(20),
 --Tid 		integer,
 Specid 		integer,
 PRIMARY KEY (fname),
-FOREIGN KEY (PhoneNumber) REFERENCES ContactMethods(phonenumber),
+FOREIGN KEY (fname, PhoneNumber) REFERENCES ContactMethods(name, phonenumber),
 -- mentioned above
 --FOREIGN KEY (Cid) REFERENCES Contracts(Cid),
 -- deleted because another table BidTasks will resolve this

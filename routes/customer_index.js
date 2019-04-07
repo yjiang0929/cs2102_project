@@ -10,17 +10,24 @@ const pool = new Pool({
   port: 5432,
 })
 
-var contract_query = 'SELECT * FROM contracts';
-var contact_query = 'SELECT * FROM ContactMethods';
-var payment_query = 'SELECT * FROM PaymentMethods';
+var contract_query = "SELECT * FROM contracts WHERE cname='";
+var contact_query = "SELECT * FROM ContactMethods WHERE name='";
+var payment_query = "SELECT * FROM PaymentMethods WHERE cname='";
 var contact_insert = 'INSERT INTO ContactMethods VALUES';
 var payment_insert = 'INSERT INTO PaymentMethods VALUES';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var name = req.session.user;
+  contract_query = contract_query + name + "'";
+  contact_query = contact_query + name + "'";
+  payment_query = payment_query + name + "'";
+
   pool.query(contract_query, (err, data) => {
     pool.query(contact_query, (err0, data0) => {
-        pool.query(payment_query, (err0, data1) => {
+        pool.query(payment_query, (err1, data1) => {
+          console.log(data0)
+          console.log(data1)
           res.render('customer_index', { title: 'CS2102 Project', data:data.rows, cdata:data0.rows, pdata:data1.rows});
     });  });  });
 });
