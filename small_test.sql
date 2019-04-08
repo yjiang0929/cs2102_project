@@ -17,3 +17,6 @@ insert into bidtasks values ('pichu',2,100);
 insert into reviews values ('man','pikachu',5,'good','20190404');
 
 insert into contracts values (1,'20190405',100,1,'pikachu','man');
+
+insert into supervisors values ('mao','first','last','female','1111');
+  

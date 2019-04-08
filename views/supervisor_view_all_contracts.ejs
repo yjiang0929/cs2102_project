@@ -15,6 +15,7 @@
 
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="javascripts/checkScript.js"></script>
   </head>
   <body id="page-top">
 
@@ -102,8 +103,8 @@
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                  <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= name%></span>
+                  <img class="img-profile rounded-circle" src="assets/img/user.png">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -151,7 +152,7 @@
                         <th>Task ID</th>
                         <th>Freelancer Name</th>
                         <th>Customer Name</th>
-                        <th>Supervisor ID</th>
+                        <th>Supervisor Name</th>
                       </tr>
                     </thead>
 
@@ -164,7 +165,7 @@
                         <td><%= data[i].tid%></td>
                         <td><%= data[i].fname%></td>
                         <td><%= data[i].cname%></td>
-                        <td><%= data[i].sid%></td>
+                        <td><%= data[i].sname%></td>
                       </tr>
                       <% } %>
                     </tbody>
@@ -175,7 +176,7 @@
 
             <div class="row">
               <div class ="col-xl-6 col-lg-6">
-                <form id="html_form" action="supervisor_sign_contracts" role="form" method="post">
+                <form id="html_form" action="supervisor_view_all" role="form" method="post">
                   <div class="form-group">
                     <label for="cid">Contract ID</label>
                     <input type="text" class="form-control" id="cid" name="cid" aria-describedby="matricHelp" placeholder="Enter the Contract ID that you want to supervise">
@@ -185,6 +186,17 @@
               </div>
             </div>
 
+
+                <script>
+                  (function() {
+                    window.addEventListener('load', function() {
+                      var forms = [document.getElementById('html_form')];
+                      var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('submit', checkSupervisor, false);
+                      });
+                    }, false);
+                  })();
+                </script>
 
           <!-- /.container-fluid -->
 
@@ -215,7 +227,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="/">Logout</a>
           </div>
         </div>
       </div>
@@ -230,13 +242,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="assets/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="assets/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="assets/js/demo/chart-area-demo.js"></script>
-    <script src="assets/js/demo/chart-pie-demo.js"></script>
 
   </body>
 
