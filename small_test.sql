@@ -7,8 +7,8 @@ insert into tasks values (2,'next task','20190403',1,1,'man');
 insert into ContactMethods values ('man','1234567','65');
 insert into PaymentMethods values ('1234567887654321','201908','SGD','man');
 
-insert into freelancers values ('pikachu','jane','doe','female',null,'1111',1);
-insert into freelancers values ('pichu','john','doe','male',null,'1111',1);
+insert into freelancers values ('pikachu','jane','doe','female','1111',1);
+insert into freelancers values ('pichu','john','doe','male','1111',1);
 
 insert into bidtasks values ('pikachu',1,1000);
 insert into bidtasks values ('pichu',1,100);

@@ -14,7 +14,8 @@ var sql_query = 'INSERT INTO reviews VALUES ';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('customer_writereviews', { title: 'CS2102 Project' });
+  var name = req.session.user
+  res.render('customer_writereviews', { title: 'CS2102 Project', name:name});
 });
 
 router.post('/',function(req, res, next){
@@ -22,9 +23,9 @@ router.post('/',function(req, res, next){
   var rdate = req.body.rdate;
   var review = req.body.review;
   var rating = req.body.rating;
-  var cname = "'man'";
+  var name = req.session.user;
 
-  var insert_query = sql_query + "(" + cname + ",'" + fname + "'," + rating + ",'" + review + "','" + rdate + "')";
+  var insert_query = sql_query + "('" + name + "','" + fname + "'," + rating + ",'" + review + "','" + rdate + "')";
 
   pool.query(insert_query, (err, data) => {
     res.redirect('/customer_writereviews');

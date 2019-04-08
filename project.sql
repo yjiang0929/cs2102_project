@@ -71,19 +71,9 @@ fname		varchar(60),
 firstname 		varchar(60),
 lastname  varchar(60),
 Gender		varchar(10),
-PhoneNumber	VARCHAR(20),
 password 	VARCHAR(20),
--- same as tid, doesnt make sense
---Cid 		integer,
--- will create another table to resolve this, it doesnt make sense to link each freelancer to only one task
---Tid 		integer,
 Specid 		integer,
 PRIMARY KEY (fname),
-FOREIGN KEY (fname, PhoneNumber) REFERENCES ContactMethods(name, phonenumber),
--- mentioned above
---FOREIGN KEY (Cid) REFERENCES Contracts(Cid),
--- deleted because another table BidTasks will resolve this
---FOREIGN KEY (Tid) REFERENCES Tasks(tid),
 FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
 );
 
@@ -118,11 +108,10 @@ primary key (cname, fname, rdate)
 );
 
 CREATE TABLE Supervisors (
-	sid				INTEGER NOT NULL,
 	sname 			VARCHAR(20) NOT NULL,
-	sgender			VARCHAR(20) NOT NULL,
-	tid				INTEGER NOT NULL,
+	firstname 	VARCHAR(20),
+	lastname		VARCHAR(20),
+	gender			VARCHAR(20) NOT NULL,
 	password		VARCHAR(20),
-	PRIMARY KEY (sid),
-	FOREIGN KEY (tid) REFERENCES Tasks(tid)
+	PRIMARY KEY (sname),
 );

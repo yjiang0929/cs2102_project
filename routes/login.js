@@ -21,7 +21,7 @@ router.post('/',function(req, res, next){
 
   if (role=='customer'){
     var customer_query = "SELECT * FROM customers WHERE cname='" + username + "'";
-    console.log(customer_query)
+
     pool.query(customer_query, (err, data) => {
       if (data.rows[0]!=undefined && data.rows[0].password==password) {
         req.session.user = username;
@@ -30,18 +30,30 @@ router.post('/',function(req, res, next){
         res.redirect('login');
       }
     });
+  } else if (role=='freelancer'){
+    var freelancer_query = "SELECT * FROM freelancers WHERE fname='" + username + "'";
+
+    pool.query(freelancer_query, (err, data) => {
+      if (data.rows[0]!=undefined && data.rows[0].password==password) {
+        req.session.user = username;
+        res.redirect('freelancer_index');
+      } else {
+        res.redirect('login');
+      }
+    });
+  } else if (role=='supervisor'){
+    var supervisor_query = "SELECT * FROM supervisors WHERE sname='" + username + "'";
+
+    pool.query(supervisor_query, (err, data) => {
+      if (data.rows[0]!=undefined && data.rows[0].password==password) {
+        req.session.user = username;
+        res.redirect('index_supervisor');
+      } else {
+        res.redirect('login');
+      }
+    });
   }
 
-  // User.findOne({ where: { username: username } }).then(function (user) {
-  //     if (!user) {
-  //         res.redirect('/login');
-  //     } else if (!user.validPassword(password)) {
-  //         res.redirect('/login');
-  //     } else {
-  //         req.session.user = user.dataValues;
-  //         res.redirect('/dashboard');
-  //     }
-  // });
 });
 
 module.exports = router;

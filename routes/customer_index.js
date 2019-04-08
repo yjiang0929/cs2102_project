@@ -19,16 +19,14 @@ var payment_insert = 'INSERT INTO PaymentMethods VALUES';
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var name = req.session.user;
-  contract_query = contract_query + name + "'";
-  contact_query = contact_query + name + "'";
-  payment_query = payment_query + name + "'";
+  var new_contract_query = contract_query + name + "'";
+  var new_contact_query = contact_query + name + "'";
+  var new_payment_query = payment_query + name + "'";
 
-  pool.query(contract_query, (err, data) => {
-    pool.query(contact_query, (err0, data0) => {
-        pool.query(payment_query, (err1, data1) => {
-          console.log(data0)
-          console.log(data1)
-          res.render('customer_index', { title: 'CS2102 Project', data:data.rows, cdata:data0.rows, pdata:data1.rows});
+  pool.query(new_contract_query, (err, data) => {
+    pool.query(new_contact_query, (err0, data0) => {
+        pool.query(new_payment_query, (err1, data1) => {
+          res.render('customer_index', { title: 'CS2102 Project', name:name, data:data.rows, cdata:data0.rows, pdata:data1.rows});
     });  });  });
 });
 
@@ -38,28 +36,28 @@ router.post('/',function(req, res, next){
   var cardnumber = req.body.cardnumber;
   var expdate = req.body.expdate;
   var currency = req.body.currency;
-  var name = "'man'"
+  var name = req.session.user;
 
   if (cardnumber==undefined) {
-    var contact_insert_query = contact_insert + "(" + name + ",'" + phonenumber + "','" + areacode + "')";
+    var contact_insert_query = contact_insert + "('" + name + "','" + phonenumber + "','" + areacode + "')";
 
     pool.query(contact_insert_query, (err, ins_data) => {
-      pool.query(contract_query, (err, data) => {
-        pool.query(contact_query, (err0, data0) => {
-          pool.query(payment_query, (err0, data1) => {
-            res.render('customer_index', { title: 'CS2102 Project', data:data.rows, cdata:data0.rows, pdata:data1.rows});
+      pool.query(new_contract_query, (err, data) => {
+        pool.query(new_contact_query, (err0, data0) => {
+          pool.query(new_payment_query, (err1, data1) => {
+            res.render('customer_index', { title: 'CS2102 Project', name:name, data:data.rows, cdata:data0.rows, pdata:data1.rows});
           });
         });
       });
     });
   } else if (phonenumber==undefined) {
-    var payment_insert_query = payment_insert + "('" + cardnumber + "','" + expdate + "','" + currency + "'," + name + ")";
+    var payment_insert_query = payment_insert + "('" + cardnumber + "','" + expdate + "','" + currency + "','" + name + "')";
 
     pool.query(payment_insert_query, (err, ins_data) => {
-      pool.query(contract_query, (err, data) => {
-        pool.query(contact_query, (err0, data0) => {
-          pool.query(payment_query, (err0, data1) => {
-            res.render('customer_index', { title: 'CS2102 Project', data:data.rows, cdata:data0.rows, pdata:data1.rows});
+      pool.query(new_contract_query, (err, data) => {
+        pool.query(new_contact_query, (err0, data0) => {
+          pool.query(new_payment_query, (err1, data1) => {
+            res.render('customer_index', { title: 'CS2102 Project', name:name, data:data.rows, cdata:data0.rows, pdata:data1.rows});
           });
         });
       });
