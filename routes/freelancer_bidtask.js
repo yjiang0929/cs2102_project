@@ -14,7 +14,9 @@ var sql_query = 'INSERT INTO BidTasks VALUES';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('freelancer_bidtask', { title: 'CS2102 Project' });
+  var name = req.session.user;
+
+  res.render('freelancer_bidtask', { title: 'CS2102 Project', name:name });
 });
 
 router.post('/',function(req, res, next){
