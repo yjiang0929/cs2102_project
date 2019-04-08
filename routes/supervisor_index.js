@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index_supervisor', { title: 'CS2102 Project' });
+  res.render('supervisor_index', { title: 'CS2102 Project' });
 });
 
 module.exports = router;

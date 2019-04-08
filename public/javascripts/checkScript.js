@@ -51,3 +51,8 @@ function checkContact(event) {
 function checkPayment(event) {
 	alert("New payment method created successfully!");
 }
+
+
+function checkSupervisor(event) {
+	alert("You've successfully supervised the task!");
+}

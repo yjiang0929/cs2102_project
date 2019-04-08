@@ -10,9 +10,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 
-var index_supervisor = require ('./routes/index_supervisor');
+var supervisor_index = require ('./routes/supervisor_index');
 var supervisor_view_all = require ('./routes/supervisor_view_all_contracts');
 var supervisor_view_my = require ('./routes/supervisor_view_my_contracts');
+var supervisor_sign_contracts = require ('./routes/supervisor_sign_contracts');
 
 var customerIndexRouter = require('./routes/customer_index');
 var customerCreateTasksRouter = require('./routes/customer_createtasks');
@@ -45,9 +46,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.use('/index_supervisor', index_supervisor);
+app.use('/supervisor_index', supervisor_index);
 app.use('/supervisor_view_all', supervisor_view_all);
 app.use('/supervisor_view_my', supervisor_view_my);
+app.use('/supervisor_sign_contracts', supervisor_sign_contracts);
 
 app.use('/customer_index',customerIndexRouter);
 app.use('/customer_viewtasks',customerViewTasksRouter);
