@@ -9,9 +9,22 @@ const pool = new Pool({
   port:5432,
 })
 
+const { Pool } = require('pg')
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'cs2102',
+  password: '********',
+  port: 5432,
+})
+
+var sql_query = 'SELECT * FROM tasks'
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'CS2102 Project' });
+  pool.query(sql_query, (err, data) => {
+    res.render('login', { title: 'CS2102 Project', data:data.rows});
+  });
 });
 
 router.post('/',function(req, res, next){
