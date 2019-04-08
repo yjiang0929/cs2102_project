@@ -97,8 +97,6 @@ primary key (cname, fname, rdate)
 
 CREATE TABLE Supervisors (
 	sname 			VARCHAR(20) NOT NULL,
-	sgender			VARCHAR(20) NOT NULL,
-	password		VARCHAR(20),
 	firstname 		VARCHAR(20),
 	lastname		VARCHAR(20),
 	gender			VARCHAR(20) NOT NULL,
@@ -114,11 +112,10 @@ PayAmount 	integer,
 Tid 		integer,
 fname 		varchar(60),
 cname 		varchar(60),
-sname 		integer,
+sname 		varchar(20),
 PRIMARY KEY (Cid),
 FOREIGN KEY (Tid) REFERENCES Tasks(tid),
 FOREIGN KEY (fname) REFERENCES Freelancers(fname),
 FOREIGN KEY (cname) REFERENCES Customers(cname),
 FOREIGN KEY (sname) REFERENCES Supervisors(sname)
 );
-

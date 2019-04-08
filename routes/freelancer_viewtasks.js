@@ -10,12 +10,14 @@ const pool = new Pool({
   port: 5432,
 })
 
-var sql_query = 'SELECT * FROM freelancers'
+var sql_query = 'SELECT * FROM tasks'
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	  pool.query(sql_query, (err, data) => {
-  res.render('freelancer_viewtasks', { title: 'CS2102 Project', data:data.rows});
+  var name = req.session.user;
+
+  pool.query(sql_query, (err, data) => {
+    res.render('freelancer_viewtasks', { title: 'CS2102 Project', name: name, data:data.rows});
 	});
 });
 

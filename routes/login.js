@@ -52,7 +52,7 @@ router.post('/',function(req, res, next){
     pool.query(supervisor_query, (err, data) => {
       if (data.rows[0]!=undefined && data.rows[0].password==password) {
         req.session.user = username;
-        res.redirect('index_supervisor');
+        res.redirect('supervisor_index');
       } else {
         res.redirect('login');
       }
