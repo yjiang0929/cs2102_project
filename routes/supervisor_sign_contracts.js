@@ -15,8 +15,10 @@ var contracts_sid = "UPDATE Contracts SET sid = ";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var name = req.session.user;
+
   pool.query(sql_query, (err, data) => {
-    res.render('customer_viewtasks', { title: 'CS2102 Project', data:data.rows});
+    res.render('customer_viewtasks', { title: 'CS2102 Project', name:name, data:data.rows});
   });
 });
 
@@ -25,7 +27,7 @@ router.post('/', function(req, res, next){
 	var tid = req.body.tid;
 	var cid = req.body.cid;
 
-	var contracts_update_query = contracts_sid + "(" + sid + ", tid = " + tid + ")" + 
+	var contracts_update_query = contracts_sid + "(" + sid + ", tid = " + tid + ")" +
 	" WHERE cid = " + cid;
 
 	pool.query(contracts_update_query, (err, data) => {

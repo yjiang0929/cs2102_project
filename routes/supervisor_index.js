@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('supervisor_index', { title: 'CS2102 Project' });
+  var name = req.session.user;
+
+  res.render('supervisor_index', { title: 'CS2102 Project', name:name});
 });
 
 module.exports = router;

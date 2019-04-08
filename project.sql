@@ -97,7 +97,6 @@ primary key (cname, fname, rdate)
 
 CREATE TABLE Supervisors (
 	sname 			VARCHAR(20) NOT NULL,
-	sgender			VARCHAR(20) NOT NULL,
 	firstname 		VARCHAR(20),
 	lastname		VARCHAR(20),
 	gender			VARCHAR(20) NOT NULL,

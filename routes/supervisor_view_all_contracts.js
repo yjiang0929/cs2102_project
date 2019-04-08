@@ -14,8 +14,10 @@ var sql_query = 'SELECT * FROM Contracts'
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var name = req.session.user;
+
 	pool.query(sql_query, (err, data) => {
-  		res.render('supervisor_view_all_contracts', { title: 'CS2102 Project', data:data.rows });
+  		res.render('supervisor_view_all_contracts', { title: 'CS2102 Project', name:name, data:data.rows });
   });
 });
 
