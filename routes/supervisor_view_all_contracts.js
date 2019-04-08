@@ -16,15 +16,16 @@ var contracts_sname = "UPDATE Contracts SET sname = ";
 
 
 router.post('/', function(req, res, next){
-	var sid = req.body.sname;
-	var tid = req.body.tid;
+	var sname = req.session.user;
 	var cid = req.body.cid;
 
-	var contracts_update_query = contracts_sname + "(" + sname + ", tid = " + tid + ")" + 
+	var contracts_update_query = contracts_sname + "'" + sname + "'" + 
 	" WHERE cid = " + cid;
 
 	pool.query(contracts_update_query, (err, data) => {
-		res.redirect('/supervisor_index')
+		console.log(contracts_update_query)
+		console.log(data)
+		res.redirect('supervisor_view_my')
 	});
 });
 
