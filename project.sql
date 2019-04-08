@@ -63,7 +63,7 @@ CREATE TABLE ContactMethods (
 	name	VARCHAR(60),
   phonenumber 		VARCHAR(20),
   areacode 			VARCHAR(5),
-  PRIMARY KEY (phonenumber)
+  PRIMARY KEY (name, phonenumber)
 );
 
 CREATE TABLE Freelancers (
@@ -71,19 +71,9 @@ fname		varchar(60),
 firstname 		varchar(60),
 lastname  varchar(60),
 Gender		varchar(10),
-PhoneNumber	VARCHAR(20),
 password 	VARCHAR(20),
--- same as tid, doesnt make sense
---Cid 		integer,
--- will create another table to resolve this, it doesnt make sense to link each freelancer to only one task
---Tid 		integer,
 Specid 		integer,
 PRIMARY KEY (fname),
-FOREIGN KEY (PhoneNumber) REFERENCES ContactMethods(phonenumber),
--- mentioned above
---FOREIGN KEY (Cid) REFERENCES Contracts(Cid),
--- deleted because another table BidTasks will resolve this
---FOREIGN KEY (Tid) REFERENCES Tasks(tid),
 FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
 );
 
@@ -106,11 +96,14 @@ primary key (cname, fname, rdate)
 );
 
 CREATE TABLE Supervisors (
-	sid				INTEGER NOT NULL,
 	sname 			VARCHAR(20) NOT NULL,
 	sgender			VARCHAR(20) NOT NULL,
 	password		VARCHAR(20),
-	PRIMARY KEY (sid)
+	firstname 		VARCHAR(20),
+	lastname		VARCHAR(20),
+	gender			VARCHAR(20) NOT NULL,
+	password		VARCHAR(20),
+	PRIMARY KEY (sname)
 );
 
 
@@ -121,11 +114,11 @@ PayAmount 	integer,
 Tid 		integer,
 fname 		varchar(60),
 cname 		varchar(60),
-sid 		integer,
+sname 		integer,
 PRIMARY KEY (Cid),
 FOREIGN KEY (Tid) REFERENCES Tasks(tid),
 FOREIGN KEY (fname) REFERENCES Freelancers(fname),
 FOREIGN KEY (cname) REFERENCES Customers(cname),
-FOREIGN KEY (sid) 	REFERENCES Supervisors(sid)
+FOREIGN KEY (sname) REFERENCES Supervisors(sname)
 );
 
