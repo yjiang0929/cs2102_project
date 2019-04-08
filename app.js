@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -24,12 +25,24 @@ var customerMyReviewsRouter = require('./routes/customer_myreviews');
 var freelancerIndexRouter = require('./routes/freelancer_index');
 var freelancerBidTaskRouter = require('./routes/freelancer_bidtask');
 var freelancerViewContractsRouter = require('./routes/freelancer_viewcontracts');
+var freelancerViewTasksRouter = require('./routes/freelancer_viewtasks');
 var freelancerViewReviewsRouter = require('./routes/freelancer_viewreviews');
 
 var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
 
 var app = express();
+
+// add & configure middleware
+app.use(session({
+  key: 'user_sid',
+  secret: 'somerandonstuffs',
+  saveUninitialized: false,
+  resave: false,
+  cookie: {
+      expires: 600000
+  }
+}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +55,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/index',indexRouter);
 app.use('/users', usersRouter);
 
 app.use('/index_supervisor', index_supervisor);
@@ -59,6 +73,7 @@ app.use('/freelancer_index',freelancerIndexRouter);
 app.use('/freelancer_bidtask',freelancerBidTaskRouter);
 app.use('/freelancer_viewreviews',freelancerViewReviewsRouter);
 app.use('/freelancer_viewcontracts',freelancerViewContractsRouter);
+app.use('/freelancer_viewtasks',freelancerViewTasksRouter);
 
 app.use('/login',loginRouter);
 app.use('/register',registerRouter);

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -37,7 +38,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-          <a class="nav-link" href="/index_supervisor">
+          <a class="nav-link" href="/freelancer_index">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
         </li>
@@ -47,24 +48,51 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Contracts
+          Tasks
         </div>
+
+        <li class="nav-item active">
+          <a class="nav-link collapsed" href="/freelancer_viewtasks" >
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>View Tasks</span>
+          </a>
+        </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-          <a class="nav-link" href="/supervisor_view_all">
+          <a class="nav-link" href="/freelancer_bidtask">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>View All Contracts</span>
+            <span>Bid for Task</span>
           </a>
         </li>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-          <a class="nav-link" href="/supervisor_view_my">
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/freelancer_viewcontracts" >
             <i class="fas fa-fw fa-wrench"></i>
-            <span>View My Contracts</span>
+            <span>View Contracts</span>
           </a>
         </li>
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+          Reviews
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/freelancer_viewreviews">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>View Reviews</span>
+          </a>
+        </li>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -91,14 +119,12 @@
               <i class="fa fa-bars"></i>
             </button>
 
-            <!-- Topbar -->
+            <!-- Topbar Search -->
             <a class="d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-text">
-              Welcome, supervisor!
+              Welcome, Freelancer!
             </a>
 
-            <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
-
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -107,7 +133,7 @@
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/customer_index">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                   </a>
@@ -129,38 +155,35 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">View My Contracts</h1>
-
+              <h1 class="h3 mb-0 text-gray-800">Available Tasks</h1>
             </div>
 
-            <!-- Content Row -->
-
-            <!-- DataTables Example -->
+            <!-- DataTales Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">My Contracts</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Tasks</h6>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
-                        <th>Contract ID</th>
-                        <th>Date</th>
-                        <th>Price</th>
                         <th>Task ID</th>
-                        <th>Freelancer Name</th>
+                        <th>Description</th>
+                        <th>Task Date</th>
+                        <th>Location</th>
+                        <th>Specialization</th>
                         <th>Customer Name</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <% for (var i=0; i<data.length; i++) { %>
+                      <% for (var i=0; i<data.length; i++) {%>
                       <tr>
-                        <td><%= data[i].cid%></td>
-                        <td><%= data[i].date%></td>
-                        <td><%= data[i].payamount%></td>
                         <td><%= data[i].tid%></td>
-                        <td><%= data[i].fname%></td>
+                        <td><%= data[i].description%></td>
+                        <td><%= data[i].tdate%></td>
+                        <td><%= data[i].lid%></td>
+                        <td><%= data[i].specid%></td>
                         <td><%= data[i].cname%></td>
                       </tr>
                       <% } %>
@@ -170,6 +193,19 @@
               </div>
             </div>
 
+            <div class="row">
+              <div class ="col-xl-6 col-lg-6">
+                <form id="html_form" action="customer_signcontracts" role="form" method="link">
+                  <div class="form-group">
+                    <label for="tid">Task ID</label>
+                    <input type="text" class="form-control" id="tid" name="tid" aria-describedby="matricHelp" placeholder="Enter the Task ID that you want to view">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
           <!-- /.container-fluid -->
 
         </div>
@@ -214,13 +250,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="assets/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="assets/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="assets/js/demo/chart-area-demo.js"></script>
-    <script src="assets/js/demo/chart-pie-demo.js"></script>
 
   </body>
 

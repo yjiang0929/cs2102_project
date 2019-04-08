@@ -14,7 +14,8 @@ var sql_query = 'INSERT INTO tasks VALUES';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('customer_createtasks', { title: 'CS2102 Project' });
+  var name = req.session.user
+  res.render('customer_createtasks', { title: 'CS2102 Project', name:name });
 });
 
 router.post('/',function(req, res, next){
@@ -23,9 +24,9 @@ router.post('/',function(req, res, next){
   var tdate = req.body.tdate;
   var lid = req.body.lid;
   var specid = req.body.specid;
-  var cname = "'man'"
+  var name = req.session.user
 
-  var insert_query = sql_query + "(" + tid + ",'" + description + "','" + tdate + "'," + lid + "," + specid + "," + cname + ")";
+  var insert_query = sql_query + "(" + tid + ",'" + description + "','" + tdate + "'," + lid + "," + specid + ",'" + name + "')";
 
   pool.query(insert_query, (err, data) => {
     res.redirect('/customer_createtasks')

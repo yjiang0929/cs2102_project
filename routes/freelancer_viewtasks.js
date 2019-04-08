@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 const { Pool } = require('pg')
 const pool = new Pool({
   user: 'postgres',
@@ -11,13 +10,14 @@ const pool = new Pool({
   port: 5432,
 })
 
-var sql_query = 'SELECT * FROM Contracts'
+var sql_query = 'SELECT * FROM freelancers'
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	pool.query(sql_query, (err, data) => {
-  		res.render('supervisor_view_my_contracts', { title: 'CS2102 Project', data:data.rows });
+	  pool.query(sql_query, (err, data) => {
+  res.render('freelancer_viewtasks', { title: 'CS2102 Project', data:data.rows});
 	});
 });
+
 
 module.exports = router;
