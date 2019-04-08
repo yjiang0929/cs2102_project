@@ -21,7 +21,26 @@ router.post('/',function(req, res, next){
   } else {
     var username = req.body.username,
         password = req.body.password,
-        firstname = req.body.firstname;
+        firstname = req.body.firstname,
+        lastname = req.body.lastname,
+        gender = req.body.gender,
+        role = req.body.role;
+
+    if (role=='customer'){
+      var customer_insert = "INSERT INTO customers VALUES ('" + username + "', '" + firstname + "', '" +lastname + "', '" + gender + "', '" + password + "');"
+      console.log(customer_insert)
+
+      pool.query(customer_insert, (err, data) => {
+        res.redirect('login');
+      });
+    } else if (role=='freelancer'){
+      var freelancer_insert = "INSERT INTO freelancers VALUES ('" + username + "', '" + firstname + "', '" + lastname + "', '" + gender + "', '" + password + "', null);"
+
+      pool.query(freelancer_insert, (err, data) => {
+        res.redirect('login');
+      })
+    }
+
   }
 });
 
