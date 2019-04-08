@@ -1,13 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const { Pool } = require('pg')
-const pool = new Pool({
-  user:'postgres',
-  host:'localhost',
-  database:'cs2102',
-  password:'********',
-  port:5432,
-})
 
 const { Pool } = require('pg')
 const pool = new Pool({
