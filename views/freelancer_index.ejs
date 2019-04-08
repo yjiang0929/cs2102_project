@@ -62,7 +62,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/freelancer_bidtask">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Bid for Task</span>
+            <span>View Biddings</span>
           </a>
         </li>
 
@@ -153,13 +153,13 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">Freelancer Dashboard</h1>
+              <h1 class="h3 mb-0 text-gray-800">My Dashboard</h1>
             </div>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Freelancers</h6>
+                <h6 class="m-0 font-weight-bold text-primary">My Info</h6>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -194,14 +194,71 @@
             </div>
 
             <div class="row">
-              <div class ="col-xl-6 col-lg-6">
-                <form id="html_form" action="customer_signcontracts" role="form" method="link">
-                  <div class="form-group">
-                    <label for="tid">Freelancer ID</label>
-                    <input type="text" class="form-control" id="tid" name="tid" aria-describedby="matricHelp" placeholder="Enter the Freelancer ID that you want to view">
+              <div class="col-lg-6">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Add Contact Methods</h6>
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                  <div class="card-body">
+                    <form id="contact_form" action="customer_index" role="form" method="post">
+                      <div class="form-group">
+                        <label for="areacode">Area Code</label>
+                        <input type="text" class="form-control" id="areacode" name="areacode" placeholder="Enter your area code">
+                      </div>
+                      <div class="form-group">
+                        <label for="phonenumber">Phone Number</label>
+                        <input type="text" class="form-control" id="phonenumber" name="phonenumber" aria-describedby="matricHelp" placeholder="Enter your phone number">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
+                    <script>
+                      (function() {
+                        window.addEventListener('load', function() {
+                          var forms = [document.getElementById('contact_form')];
+                          var validation = Array.prototype.filter.call(forms, function(form) {
+                            form.addEventListener('submit', checkContact, false);
+                          });
+                        }, false);
+                      })();
+                    </script>
+                  </div>
+                </div>
+              </div>
+
+              
+              <div class="col-lg-6">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">My Contact Methods</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Area Code</th>
+                            <th>Phone Number</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>Area Code</th>
+                            <th>Phone Number</th>
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                          <% for (var i=0; i<cdata.length; i++) {%>
+                          <tr>
+                            <td><%= cdata[i].areacode%></td>
+                            <td><%= cdata[i].phonenumber%></td>
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -235,7 +292,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="/">Logout</a>
           </div>
         </div>
       </div>

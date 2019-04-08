@@ -61,7 +61,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="/freelancer_bidtask">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Bid for Task</span>
+            <span>View Biddings</span>
           </a>
         </li>
 
@@ -155,37 +155,6 @@
               <h1 class="h3 mb-0 text-gray-800">Bid Task</h1>
             </div>
 
-            <!-- Content Row -->
-            <div class="row">
-              <div class ="col-xl-6 col-lg-6">
-                <form id="html_form" action="customer_createtasks" role="form" method="post">
-                  <div class="form-group">
-                    <label for="tid">Task ID</label>
-                    <input type="text" class="form-control" id="tid" name="tid" aria-describedby="matricHelp" placeholder="Enter your task id">
-                  </div>
-                  <div class="form-group">
-                    <label for="Freelancer ID">Freelancer ID</label>
-                    <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter your Freelancer ID">
-                  </div>
-                  <div class="form-group">
-                    <label for="bid price">Bid Price</label>
-                    <input type="text" class="form-control" id="bidPrice" name="bidPrice" placeholder="Enter your bid price">
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-
-                <script>
-                  (function() {
-                    window.addEventListener('load', function() {
-                      var forms = [document.getElementById('html_form')];
-                      var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', checkTask, false);
-                      });
-                    }, false);
-                  })();
-                </script>
-              </div>
-            </div>
           </div>
           <!-- /.container-fluid -->
 
@@ -216,7 +185,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="/">Logout</a>
           </div>
         </div>
       </div>

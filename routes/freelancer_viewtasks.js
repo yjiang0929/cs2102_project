@@ -21,5 +21,20 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+var insert_query = 'INSERT INTO BidTasks VALUES';
+
+router.post('/',function(req, res, next){
+  var name = req.session.user;
+  var tid = req.body.tid;
+  var fname = name;
+  var bidPrice = req.body.bidPrice;
+
+  var new_insert_query = insert_query + "(" + tid + ",'" + fname + "'," + bidPrice + ")";
+
+  pool.query(new_insert_query, (err, data) => {
+    res.redirect('/freelancer_bidtask')
+  });
+});
+
 
 module.exports = router;

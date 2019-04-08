@@ -42,21 +42,19 @@
                   <form class="user" action="login" role="form" method="post">
                     <div class="form-group">
                       <!--input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..."-->
-					            <input type="varchar" class="form-control form-control-user" id="username" name="username" aria-describedby="usernameHelp" placeholder="Enter Username...">
+					            <input type="varchar" class="form-control" id="username" name="username" aria-describedby="usernameHelp" placeholder="Enter Username...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
 
-			<p><b>Pelase select which category you are in:</b></p>
-
                     <div class="form-group">
-                      <select type="role" class="form-control form-control-user" id="role" name="role" placeholder="please select your row">
-			<option value="(none)">(none)</option>
-  			<option value="customer">Customer</option>
- 			<option value="freelancer">Freelancer</option>
-  			<option value="supervisor">Supervisor</option>
-			</select>
+                      <select type="role" class="form-control" id="role" name="role">
+                    			<option value="">--Please select your role--</option>
+                    			<option value="customer">Customer</option>
+                     			<option value="freelancer">Freelancer</option>
+                    			<option value="supervisor">Supervisor</option>
+                			</select>
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                       Login
