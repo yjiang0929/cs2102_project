@@ -15,6 +15,7 @@
 
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="javascripts/checkScript.js"></script>
   </head>
   <body id="page-top">
 
@@ -151,7 +152,7 @@
                         <th>Task ID</th>
                         <th>Freelancer Name</th>
                         <th>Customer Name</th>
-                        <th>Supervisor ID</th>
+                        <th>Supervisor Name</th>
                       </tr>
                     </thead>
 
@@ -164,7 +165,7 @@
                         <td><%= data[i].tid%></td>
                         <td><%= data[i].fname%></td>
                         <td><%= data[i].cname%></td>
-                        <td><%= data[i].sid%></td>
+                        <td><%= data[i].sname%></td>
                       </tr>
                       <% } %>
                     </tbody>
@@ -175,7 +176,7 @@
 
             <div class="row">
               <div class ="col-xl-6 col-lg-6">
-                <form id="html_form" action="supervisor_sign_contracts" role="form" method="post">
+                <form id="html_form" action="supervisor_view_all" role="form" method="post">
                   <div class="form-group">
                     <label for="cid">Contract ID</label>
                     <input type="text" class="form-control" id="cid" name="cid" aria-describedby="matricHelp" placeholder="Enter the Contract ID that you want to supervise">
@@ -185,6 +186,17 @@
               </div>
             </div>
 
+
+                <script>
+                  (function() {
+                    window.addEventListener('load', function() {
+                      var forms = [document.getElementById('html_form')];
+                      var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('submit', checkSupervisor, false);
+                      });
+                    }, false);
+                  })();
+                </script>
 
           <!-- /.container-fluid -->
 
