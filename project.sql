@@ -77,18 +77,6 @@ PRIMARY KEY (fname),
 FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
 );
 
-create table Contracts(
-Cid 		integer,
-Date 		varchar(10),
-PayAmount 	integer,
-Tid 		integer,
-fname 		varchar(60),
-cname 		varchar(60),
-PRIMARY KEY (Cid),
-FOREIGN KEY (Tid) REFERENCES Tasks(tid),
-FOREIGN KEY (fname) REFERENCES Freelancers(fname),
-FOREIGN KEY (cname) REFERENCES Customers(cname)
-);
 
 CREATE TABLE BidTasks (
 fname 		varchar(60),
@@ -109,9 +97,28 @@ primary key (cname, fname, rdate)
 
 CREATE TABLE Supervisors (
 	sname 			VARCHAR(20) NOT NULL,
-	firstname 	VARCHAR(20),
+	sgender			VARCHAR(20) NOT NULL,
+	password		VARCHAR(20),
+	firstname 		VARCHAR(20),
 	lastname		VARCHAR(20),
 	gender			VARCHAR(20) NOT NULL,
 	password		VARCHAR(20),
-	PRIMARY KEY (sname),
+	PRIMARY KEY (sname)
 );
+
+
+create table Contracts(
+Cid 		integer,
+Date 		varchar(10),
+PayAmount 	integer,
+Tid 		integer,
+fname 		varchar(60),
+cname 		varchar(60),
+sname 		integer,
+PRIMARY KEY (Cid),
+FOREIGN KEY (Tid) REFERENCES Tasks(tid),
+FOREIGN KEY (fname) REFERENCES Freelancers(fname),
+FOREIGN KEY (cname) REFERENCES Customers(cname),
+FOREIGN KEY (sname) REFERENCES Supervisors(sname)
+);
+
