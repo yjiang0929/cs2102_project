@@ -10,7 +10,7 @@ const pool = new Pool({
   port: 5432,
 })
 
-var sql_query = 'SELECT * FROM freelancers'
+var sql_query = 'SELECT * FROM tasks'
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
