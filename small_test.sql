@@ -1,6 +1,6 @@
 insert into customers values ('man','dude','guy','male','1111');
-insert into locations values (1,'singapore');
-insert into specializations values (1, '1','1',1);
+insert into locations values (1,'singapore', 'singapore');
+insert into specializations values (1, '1','Weight Lifting');
 insert into tasks values (1,'this task','20190402',1,1,'man');
 insert into tasks values (2,'next task','20190403',1,1,'man');
 
@@ -19,4 +19,3 @@ insert into reviews values ('man','pikachu',5,'good','20190404');
 insert into contracts values (1,'20190405',100,1,'pikachu','man');
 
 insert into supervisors values ('mao','first','last','female','1111');
-  

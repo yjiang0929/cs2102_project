@@ -33,7 +33,7 @@ router.post('/',function(req, res, next){
   var fname = name;
   var bidPrice = req.body.bidPrice;
 
-  var new_insert_query = insert_query + "(" + tid + ",'" + fname + "'," + bidPrice + ")";
+  var new_insert_query = insert_query + "('" + fname + "'," + tid + "," + bidPrice + ")";
 
   pool.query(new_insert_query, (err, data) => {
     res.redirect('/freelancer_bidtask')

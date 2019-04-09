@@ -13,7 +13,8 @@ drop table if exists Bidtasks cascade;
 
 CREATE TABLE Locations (
 	lid 			INTEGER NOT NULL,
-	lname			VARCHAR(20) NOT NULL,
+	city			VARCHAR(20) NOT NULL,
+	country		VARCHAR(20),
 	PRIMARY KEY (lid)
 );
 
@@ -21,7 +22,6 @@ CREATE TABLE Specializations (
 Specid 				integer,
 DifficultyLevel 	varchar(10),
 Category 			varchar(60),
-Tid 				integer,
 PRIMARY KEY (Specid)
 );
 

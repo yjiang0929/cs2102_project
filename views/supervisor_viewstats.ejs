@@ -15,7 +15,6 @@
 
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <script src="javascripts/checkScript.js"></script>
   </head>
   <body id="page-top">
 
@@ -52,7 +51,7 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/supervisor_view_all">
             <i class="fas fa-fw fa-wrench"></i>
             <span>View All Contracts</span>
@@ -76,7 +75,7 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="/supervisor_viewstats">
             <i class="fas fa-fw fa-signal"></i>
             <span>View Statistics</span>
@@ -146,77 +145,114 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">View All Contracts</h1>
+              <h1 class="h3 mb-0 text-gray-800">View stats</h1>
 
             </div>
 
             <!-- Content Row -->
 
-            <!-- DataTables Example -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">All Contracts</h6>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                      <tr>
-                        <th>Contract ID</th>
-                        <th>Date</th>
-                        <th>Price</th>
-                        <th>Task ID</th>
-                        <th>Freelancer Name</th>
-                        <th>Customer Name</th>
-                        <th>Supervisor Name</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      <% for (var i=0; i<data.length; i++) { %>
-                      <tr>
-                        <td><%= data[i].cid%></td>
-                        <td><%= data[i].date%></td>
-                        <td><%= data[i].payamount%></td>
-                        <td><%= data[i].tid%></td>
-                        <td><%= data[i].fname%></td>
-                        <td><%= data[i].cname%></td>
-                        <td><%= data[i].sname%></td>
-                      </tr>
-                      <% } %>
-                    </tbody>
-                  </table>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Task count in each location</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Location ID</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th>Task Count</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for (var i=0; i<data1.length; i++) { %>
+                          <tr>
+                            <td><%= data1[i].lid%></td>
+                            <td><%= data1[i].city%></td>
+                            <td><%= data1[i].country%></td>
+                            <td><%= data1[i].taskcount%></td>
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="row">
-              <div class ="col-xl-6 col-lg-6">
-                <form id="html_form" action="supervisor_view_all" role="form" method="post">
-                  <div class="form-group">
-                    <label for="cid">Contract ID</label>
-                    <input type="text" class="form-control" id="cid" name="cid" aria-describedby="matricHelp" placeholder="Enter the Contract ID that you want to supervise">
+              <div class="col-lg-12">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Task count for each specialization</h6>
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Specialization ID</th>
+                            <th>Difficulty Level</th>
+                            <th>Category</th>
+                            <th>Task Count</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for (var i=0; i<data2.length; i++) { %>
+                          <tr>
+                            <td><%= data2[i].specid%></td>
+                            <td><%= data2[i].difficultylevel%></td>
+                            <td><%= data2[i].category%></td>
+                            <td><%= data2[i].taskcount%></td>
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Freelancer Earning Ranking</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Freelancer User Name</th>
+                            <th>Total Earning</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for (var i=0; i<data3.length; i++) { %>
+                          <tr>
+                            <td><%= data3[i].fname%></td>
+                            <td><%= data3[i].totalearning%></td>
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
 
-                <script>
-                  (function() {
-                    window.addEventListener('load', function() {
-                      var forms = [document.getElementById('html_form')];
-                      var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', checkSupervisor, false);
-                      });
-                    }, false);
-                  })();
-                </script>
-
           <!-- /.container-fluid -->
 
-          </div>
+        </div>
         <!-- End of Main Content -->
 
       </div>

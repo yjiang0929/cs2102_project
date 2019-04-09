@@ -152,7 +152,34 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">Bid Task</h1>
+              <h1 class="h3 mb-0 text-gray-800">View Biddings</h1>
+            </div>
+
+            <!-- DataTables Example -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">My biddings</h6>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Task ID</th>
+                        <th>Bid Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for (var i=0; i<data.length; i++) {%>
+                      <tr>
+                        <td><%= data[i].tid%></td>
+                        <td><%= data[i].bidprice%></td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
 
           </div>
