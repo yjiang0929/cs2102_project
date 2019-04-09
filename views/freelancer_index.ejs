@@ -170,8 +170,6 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Gender</th>
-                        <th>PhoneNumber</th>
-                        <th>AreaCode</th>
                         <th>Specialization ID</th>
                       </tr>
                     </thead>
@@ -182,8 +180,6 @@
                         <td><%= data[i].firstname%></td>
                         <td><%= data[i].lastname%></td>
                         <td><%= data[i].Gender%></td>
-                        <td><%= data[i].PhoneNumber%></td>
-                        <td><%= data[i].AreaCode%></td>
                         <td><%= data[i].Specid%></td>
                       </tr>
                       <% } %>
@@ -200,7 +196,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Add Contact Methods</h6>
                   </div>
                   <div class="card-body">
-                    <form id="contact_form" action="customer_index" role="form" method="post">
+                    <form id="contact_form" action="freelancer_index" role="form" method="post">
                       <div class="form-group">
                         <label for="areacode">Area Code</label>
                         <input type="text" class="form-control" id="areacode" name="areacode" placeholder="Enter your area code">
