@@ -10,23 +10,20 @@ const pool = new Pool({
   port:5432,
 })
 
-var sql_query = 'INSERT INTO BidTasks VALUES';
+var sql_query = "SELECT * FROM BidTasks WHERE fname ='";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('freelancer_bidtask', { title: 'CS2102 Project' });
-});
+  var name = req.session.user;
+  if (name==undefined) {
+    res.redirect('index');
+  } else {
+    var new_sql_query = sql_query + name + "'";
 
-router.post('/',function(req, res, next){
-  var tid = req.body.tid;
-  var fname = req.body.fname;
-  var bidPrice = req.body.bidPrice;
-
-  var insert_query = sql_query + "(" + tid + ",'" + fname + "','" + bidPrice + ")";
-
-  pool.query(insert_query, (err, data) => {
-    res.redirect('/freelancer_bidtask')
-  });
+    pool.query(new_sql_query, (err, data) => {
+      res.render('freelancer_bidtask', { title: 'CS2102 Project', name:name, data:data.rows });
+    })
+  }
 });
 
 module.exports = router;

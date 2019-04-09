@@ -61,7 +61,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="/freelancer_bidtask">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Bid for Task</span>
+            <span>View Biddings</span>
           </a>
         </li>
 
@@ -152,40 +152,36 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">Bid Task</h1>
+              <h1 class="h3 mb-0 text-gray-800">View Biddings</h1>
             </div>
 
-            <!-- Content Row -->
-            <div class="row">
-              <div class ="col-xl-6 col-lg-6">
-                <form id="html_form" action="customer_createtasks" role="form" method="post">
-                  <div class="form-group">
-                    <label for="tid">Task ID</label>
-                    <input type="text" class="form-control" id="tid" name="tid" aria-describedby="matricHelp" placeholder="Enter your task id">
-                  </div>
-                  <div class="form-group">
-                    <label for="Freelancer ID">Freelancer ID</label>
-                    <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter your Freelancer ID">
-                  </div>
-                  <div class="form-group">
-                    <label for="bid price">Bid Price</label>
-                    <input type="text" class="form-control" id="bidPrice" name="bidPrice" placeholder="Enter your bid price">
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-
-                <script>
-                  (function() {
-                    window.addEventListener('load', function() {
-                      var forms = [document.getElementById('html_form')];
-                      var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', checkTask, false);
-                      });
-                    }, false);
-                  })();
-                </script>
+            <!-- DataTables Example -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">My biddings</h6>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Task ID</th>
+                        <th>Bid Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for (var i=0; i<data.length; i++) {%>
+                      <tr>
+                        <td><%= data[i].tid%></td>
+                        <td><%= data[i].bidprice%></td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
+
           </div>
           <!-- /.container-fluid -->
 

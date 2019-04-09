@@ -11,15 +11,20 @@ const pool = new Pool({
   port: 5432,
 })
 
-var sql_query = 'SELECT * FROM Contracts'
+var sql_query = "SELECT * FROM Contracts where sname = '";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var name = req.session.user;
+	var name = req.session.user;
+  if (name==undefined) {
+    res.redirect('index');
+  } else {
+    	var sql_query_where = sql_query + name + "'";
 
-	pool.query(sql_query, (err, data) => {
-  		res.render('supervisor_view_my_contracts', { title: 'CS2102 Project', name:name, data:data.rows });
-	});
+    	pool.query(sql_query_where, (err, data) => {
+      		res.render('supervisor_view_my_contracts', { title: 'CS2102 Project', name:name, data:data.rows });
+    	});
+    }
 });
 
 module.exports = router;

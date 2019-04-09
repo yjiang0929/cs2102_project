@@ -18,11 +18,15 @@ var tid;
 router.get('/', function(req, res, next) {
   tid = req.query.tid;
   var name = req.session.user;
-  var sql_query = "SELECT * FROM bidtasks WHERE tid=" + tid
+  if (name==undefined) {
+    res.redirect('index');
+  } else {
+    var sql_query = "SELECT * FROM bidtasks WHERE tid=" + tid
 
-  pool.query(sql_query, (err, data) => {
-    res.render('customer_signcontracts', { title: 'CS2102 Project', name:name, data:data.rows});
-  });
+    pool.query(sql_query, (err, data) => {
+      res.render('customer_signcontracts', { title: 'CS2102 Project', name:name, data:data.rows});
+    });
+  }
 });
 
 router.post('/',function(req, res, next){
