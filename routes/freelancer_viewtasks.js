@@ -15,10 +15,14 @@ var sql_query = 'SELECT * FROM tasks'
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var name = req.session.user;
+  if (name==undefined) {
+    res.redirect('index');
+  } else {
 
-  pool.query(sql_query, (err, data) => {
-    res.render('freelancer_viewtasks', { title: 'CS2102 Project', name: name, data:data.rows});
-	});
+    pool.query(sql_query, (err, data) => {
+      res.render('freelancer_viewtasks', { title: 'CS2102 Project', name: name, data:data.rows});
+  	});
+  }
 });
 
 var insert_query = 'INSERT INTO BidTasks VALUES';

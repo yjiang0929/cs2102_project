@@ -162,6 +162,40 @@
               <div class="col-lg-12">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">My information</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>User name</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Gender</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for (var i=0; i<idata.length; i++) {%>
+                          <tr>
+                            <td><%= idata[i].cname%></td>
+                            <td><%= idata[i].firstname%></td>
+                            <td><%= idata[i].lastname%></td>
+                            <td><%= idata[i].gender%></td>
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">My Contracts</h6>
                   </div>
                   <div class="card-body">
@@ -176,15 +210,6 @@
                             <th>Payment Amount</th>
                           </tr>
                         </thead>
-                        <tfoot>
-                          <tr>
-                            <th>Contract ID</th>
-                            <th>Task ID</th>
-                            <th>Freelancer Name</th>
-                            <th>Contract Date</th>
-                            <th>Payment Amount</th>
-                          </tr>
-                        </tfoot>
                         <tbody>
                           <% for (var i=0; i<data.length; i++) {%>
                           <tr>
@@ -252,12 +277,6 @@
                             <th>Phone Number</th>
                           </tr>
                         </thead>
-                        <tfoot>
-                          <tr>
-                            <th>Area Code</th>
-                            <th>Phone Number</th>
-                          </tr>
-                        </tfoot>
                         <tbody>
                           <% for (var i=0; i<cdata.length; i++) {%>
                           <tr>
@@ -327,13 +346,6 @@
                             <th>Currency Type</th>
                           </tr>
                         </thead>
-                        <tfoot>
-                          <tr>
-                            <th>Card Number</th>
-                            <th>Exp Date</th>
-                            <th>Currency Type</th>
-                          </tr>
-                        </tfoot>
                         <tbody>
                           <% for (var i=0; i<pdata.length; i++) {%>
                           <tr>

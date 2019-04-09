@@ -15,11 +15,15 @@ var sql_query = "SELECT * FROM tasks WHERE cname='"
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var name = req.session.user
-  var new_query = sql_query + name + "'"
+  if (name==undefined) {
+    res.redirect('index');
+  } else {
+    var new_query = sql_query + name + "'"
 
-  pool.query(new_query, (err, data) => {
-    res.render('customer_viewtasks', { title: 'CS2102 Project', name:name, data:data.rows});
-  });
+    pool.query(new_query, (err, data) => {
+      res.render('customer_viewtasks', { title: 'CS2102 Project', name:name, data:data.rows});
+    });
+  }
 });
 
 module.exports = router;
