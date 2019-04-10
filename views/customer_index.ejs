@@ -45,6 +45,12 @@
             <span>Dashboard</span></a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="/customer_viewproperties">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>View Properties</span></a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -208,6 +214,7 @@
                             <th>Freelancer Name</th>
                             <th>Contract Date</th>
                             <th>Payment Amount</th>
+                            <th>Address</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -218,6 +225,7 @@
                             <td><%= data[i].fname%></td>
                             <td><%= data[i].date%></td>
                             <td><%= data[i].payamount%></td>
+                            <td><%= data[i].address%></td>
                           </tr>
                           <% } %>
                         </tbody>

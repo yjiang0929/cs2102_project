@@ -9,6 +9,9 @@ const pool = new Pool({
   password: '********',
   port: 5432,
 })
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL
+// })
 
 var info_query = "SELECT * FROM customers WHERE cname='";
 var contract_query = "SELECT * FROM contracts WHERE cname='";

@@ -10,6 +10,8 @@ DROP TABLE IF EXISTS Customers CASCADE;
 DROP TABLE IF EXISTS PaymentMethods CASCADE;
 DROP TABLE IF EXISTS ContactMethods CASCADE;
 drop table if exists Bidtasks cascade;
+drop table if exists FreelancerSpecs cascade;
+
 
 CREATE TABLE Locations (
 	lid 			INTEGER NOT NULL,
@@ -43,6 +45,7 @@ CREATE TABLE Tasks (
 	lid				INTEGER NOT NULL,
 	Specid			INTEGER,
 	cname 		VARCHAR(60),
+	address VARCHAR(100),
 	PRIMARY KEY (tid),
 	FOREIGN KEY (cname) REFERENCES Customers(cname),
 	FOREIGN KEY (Specid) REFERENCES Specializations(Specid),
@@ -75,6 +78,14 @@ password 	VARCHAR(20),
 Specid 		integer,
 PRIMARY KEY (fname),
 FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
+);
+
+CREATE TABLE FreelancerSpecs (
+	fname VARCHAR(60),
+	specid integer,
+	PRIMARY KEY (fname, specid),
+	FOREIGN KEY (fname) REFERENCES Freelancers(fname),
+	FOREIGN KEY (specid) REFERENCES Specializations(specid)
 );
 
 
@@ -113,6 +124,7 @@ Tid 		integer,
 fname 		varchar(60),
 cname 		varchar(60),
 sname 		varchar(20),
+address 	varchar(100),
 PRIMARY KEY (Cid),
 FOREIGN KEY (Tid) REFERENCES Tasks(tid),
 FOREIGN KEY (fname) REFERENCES Freelancers(fname),

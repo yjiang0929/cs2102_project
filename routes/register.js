@@ -9,6 +9,9 @@ const pool = new Pool({
   password:'********',
   port:5432,
 })
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL
+// })
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

@@ -9,6 +9,9 @@ const pool = new Pool({
   password: '********',
   port: 5432,
 })
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL
+// })
 
 var contact_query = "SELECT * FROM ContactMethods WHERE name='";
 var contact_insert = 'INSERT INTO ContactMethods VALUES';

@@ -10,6 +10,9 @@ const pool = new Pool({
   password: '********',
   port: 5432,
 })
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL
+// })
 
 var complex_query1 = "select lid, city, country, count(*) as taskCount from tasks natural join locations group by (lid,city, country);";
 var complex_query2 = "select specid, difficultylevel, category, count(*) as taskcount from tasks natural join specializations group by (specid, difficultylevel, category);";

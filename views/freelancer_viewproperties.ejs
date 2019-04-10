@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -37,16 +38,17 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-          <a class="nav-link" href="/customer_index">
+          <a class="nav-link" href="/freelancer_index">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/customer_viewproperties">
+        <li class="nav-item active">
+          <a class="nav-link" href="/freelancer_viewproperties">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>View Properties</span></a>
         </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -55,19 +57,26 @@
           Tasks
         </div>
 
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/freelancer_viewtasks" >
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>View Tasks</span>
+          </a>
+        </li>
+
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-          <a class="nav-link" href="/customer_createtasks">
+          <a class="nav-link" href="/freelancer_bidtask">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Create Task</span>
+            <span>View Biddings</span>
           </a>
         </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="/customer_viewtasks" >
+          <a class="nav-link collapsed" href="/freelancer_viewcontracts" >
             <i class="fas fa-fw fa-wrench"></i>
-            <span>View Task</span>
+            <span>View Contracts</span>
           </a>
         </li>
 
@@ -80,16 +89,10 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="/customer_writereviews">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Create Reviews</span>
-          </a>
-        </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-          <a class="nav-link collapsed" href="/customer_myreviews">
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/freelancer_viewreviews">
             <i class="fas fa-fw fa-folder"></i>
             <span>View Reviews</span>
           </a>
@@ -123,7 +126,7 @@
 
             <!-- Topbar Search -->
             <a class="d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-text">
-              Welcome, Customer!
+              Welcome, Freelancer!
             </a>
 
             <ul class="navbar-nav ml-auto">
@@ -157,44 +160,70 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">View Reviews</h1>
+              <h1 class="h3 mb-0 text-gray-800">View Properties</h1>
             </div>
 
-            <!-- Content Row -->
+            <!-- DataTales Example -->
+            <!-- DataTables Example -->
             <div class="row">
-              <div class ="col-xl-12 col-lg-12">
-
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">My Reviews</h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                          <tr>
-                            <th>Freelancer ID</th>
-                            <th>Review Date</th>
-                            <th>Rating</th>
-                            <th>Review</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <% for (var i=0; i<data.length; i++) {%>
-                          <tr>
-                            <td><%= data[i].fname%></td>
-                            <td><%= data[i].rdate%></td>
-                            <td><%= data[i].rating%></td>
-                            <td><%= data[i].review%></td>
-                          </tr>
-                          <% } %>
-                        </tbody>
-                      </table>
-                    </div>
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Location ID</h6>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>Location ID</th>
+                          <th>City</th>
+                          <th>Country</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var i=0; i<data.length; i++) {%>
+                        <tr>
+                          <td><%= data[i].lid%></td>
+                          <td><%= data[i].city%></td>
+                          <td><%= data[i].country%></td>
+                        </tr>
+                        <% } %>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div class="row">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Specialization ID</h6>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>Specialization ID</th>
+                          <th>Difficulty Level</th>
+                          <th>Category</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var i=0; i<datas.length; i++) {%>
+                        <tr>
+                          <td><%= datas[i].specid%></td>
+                          <td><%= datas[i].difficultylevel%></td>
+                          <td><%= datas[i].category%></td>
+                        </tr>
+                        <% } %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
           <!-- /.container-fluid -->

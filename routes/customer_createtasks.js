@@ -9,6 +9,9 @@ const pool = new Pool({
   password:'********',
   port:5432,
 })
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL
+// })
 
 var sql_query = 'INSERT INTO tasks VALUES';
 
@@ -28,9 +31,10 @@ router.post('/',function(req, res, next){
   var tdate = req.body.tdate;
   var lid = req.body.lid;
   var specid = req.body.specid;
+  var address = req.body.address;
   var name = req.session.user
 
-  var insert_query = sql_query + "(" + tid + ",'" + description + "','" + tdate + "'," + lid + "," + specid + ",'" + name + "')";
+  var insert_query = sql_query + "(" + tid + ",'" + description + "','" + tdate + "'," + lid + "," + specid + ",'" + name + "','" + address +"')";
 
   pool.query(insert_query, (err, data) => {
     res.redirect('/customer_createtasks')
