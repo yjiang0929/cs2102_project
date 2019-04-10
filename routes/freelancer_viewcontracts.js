@@ -10,7 +10,7 @@ const pool = new Pool({
   port: 5432,
 })
 
-var sql_query = 'SELECT * FROM freelancers'
+var sql_query = "SELECT * FROM contracts WHERE fname ='"
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -18,7 +18,10 @@ router.get('/', function(req, res, next) {
   if (name==undefined) {
     res.redirect('index');
   } else {
-    pool.query(sql_query, (err, data) => {
+
+    var contract_query = sql_query + name + "'"
+
+    pool.query(contract_query, (err, data) => {
       res.render('freelancer_viewcontracts', { title: 'CS2102 Project', name:name, data:data.rows});
   	});
   }
