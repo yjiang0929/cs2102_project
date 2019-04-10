@@ -3,16 +3,16 @@ var router = express.Router();
 var url = require('url');
 
 const { Pool } = require('pg')
-// const pool = new Pool({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'cs2102',
-//   password: '********',
-//   port: 5432,
-// })
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
+  user: 'postgres',
+  host: 'localhost',
+  database: 'cs2102',
+  password: '********',
+  port: 5432,
 })
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL
+// })
 
 var contract_insert = "INSERT INTO contracts VALUES";
 var tid;
@@ -41,7 +41,8 @@ router.post('/',function(req, res, next){
 
   pool.query(find_date_query, (err,data) => {
     var date = data.rows[0].tdate;
-    var contract_insert_query = contract_insert + "(" + cid + ",'" + date + "'," + payamount + "," + tid + ",'" + fname + "','" + cname + "')";
+    var address = data.rows[0].address;
+    var contract_insert_query = contract_insert + "(" + cid + ",'" + date + "'," + payamount + "," + tid + ",'" + fname + "','" + cname + "', '" + address + "')";
 
     pool.query(contract_insert_query, (err0, data0) => {
       res.redirect('/customer_index')
