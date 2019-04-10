@@ -80,10 +80,10 @@ PRIMARY KEY (fname)
 
 CREATE TABLE FreelancerSpecs (
 	fname VARCHAR(60),
-	specid integer,
-	PRIMARY KEY (fname, specid),
+	Specid integer,
+	PRIMARY KEY (fname, Specid),
 	FOREIGN KEY (fname) REFERENCES Freelancers(fname),
-	FOREIGN KEY (specid) REFERENCES Specializations(specid)
+	FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
 );
 
 
