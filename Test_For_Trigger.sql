@@ -47,7 +47,8 @@ insert into Freelancers (fname, firstname, lastname, Gender, password, Specid) v
 
 insert into BidTasks (fname, tid, bidPrice) values
 ('Licheng Sun', 01, 100),
-('Haoyang Li', 03, 300);
+('Licheng Sun', 02, 200), --test for trigger 1: When Freelancer bids for a Task, we need to make sure he has not bid for other Task that happens at the same time. 
+('Haoyang Li', 04, 300); -- test for trigger 2: When Freelancer bids for a Task, we need to make sure that he has the Specialization required for the Task. 
 
 insert into Supervisors (sname, firstname, lastname, gender, password) values
 ('Allan Chan', 'Allan', 'Chan', 'M', '111111'),
@@ -59,5 +60,5 @@ insert into Contracts (Cid, Date, PayAmount, Tid, fname, cname, sname) values
 (103, '2018-12-19', 200, 03, 'Haoyang Li', 'Jiang Yichen', 'Herman Tang');
 
 insert into Reviews (cname, fname, rating, review, rdate) values
-('Jiang Yichen', 'Licheng Sun', 10, 'Pretty good!', '2019-12-31');
-
+('Jiang Yichen', 'Licheng Sun', 10, 'Pretty good!', '2019-12-31'),
+('Luna Tao', 'Haoyang Li', 10, 'Pretty good!', '2019-12-31'); -- test for trigger 3: When Customer writes Review for Freelancer, we need to make sure Freelancer had a contract with Customer before.
