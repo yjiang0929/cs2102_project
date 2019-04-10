@@ -15,6 +15,7 @@ var supervisor_index = require ('./routes/supervisor_index');
 var supervisor_view_all = require ('./routes/supervisor_view_all_contracts');
 var supervisor_view_my = require ('./routes/supervisor_view_my_contracts');
 var supervisorviewstatsRouter = require('./routes/supervisor_viewstats');
+var supervisorPropertiesRouter = require('./routes/supervisor_viewproperties');
 
 var customerIndexRouter = require('./routes/customer_index');
 var customerCreateTasksRouter = require('./routes/customer_createtasks');
@@ -65,6 +66,7 @@ app.use('/supervisor_index', supervisor_index);
 app.use('/supervisor_view_all', supervisor_view_all);
 app.use('/supervisor_view_my', supervisor_view_my);
 app.use('/supervisor_viewstats',supervisorviewstatsRouter);
+app.use('/supervisor_viewproperties',supervisorPropertiesRouter);
 
 app.use('/customer_index',customerIndexRouter);
 app.use('/customer_viewtasks',customerViewTasksRouter);

@@ -59,3 +59,10 @@ function checkBid(event) {
 function checkSupervisor(event) {
 	alert("You've successfully supervised the task!");
 }
+
+function checkLocation(event) {
+	alert("New location ID added!");
+}
+function checkSpec(event) {
+	alert("New specialization ID added!");
+}

@@ -76,6 +76,16 @@ router.post('/',function(req, res, next){
         });
       });
     });
+  } else {
+    pool.query(new_contract_query, (err, data) => {
+      pool.query(new_contact_query, (err0, data0) => {
+        pool.query(new_payment_query, (err1, data1) => {
+          pool.query(new_info_query, (err2, data2) => {
+            res.render('customer_index', { title: 'CS2102 Project', name:name, data:data.rows, cdata:data0.rows, pdata:data1.rows, idata:data2.rows});
+          });
+        });
+      });
+    });
   }
 
 });
