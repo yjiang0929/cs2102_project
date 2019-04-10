@@ -1,14 +1,15 @@
-delete from Locations;
-delete from Tasks;
-delete from Contracts;
-delete from Customers;
-delete from Specializations;
-delete from PaymentMethods;
-delete from ContactMethods;
-delete from Freelancers;
 delete from Reviews;
+delete from Contracts;
 delete from Supervisors;
 delete from BidTasks;
+delete from FreelancerSpecs;
+delete from Freelancers;
+delete from ContactMethods;
+delete from PaymentMethods;
+delete from Tasks;
+delete from Customers;
+delete from Specializations;
+delete from Locations;
 
 insert into Locations (lid, city, country) values
 (1, 'singapore','singapore'),

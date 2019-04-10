@@ -95,14 +95,6 @@ FOREIGN KEY (tid) REFERENCES Tasks(tid),
 FOREIGN KEY (fname) REFERENCES Freelancers(fname)
 );
 
-create table Reviews (
-cname 				varchar(100) references Customers(cname),
-fname 				varchar(100) references Freelancers(fname),
-rating 				integer,
-review				varchar(100),
-rdate 				varchar(10),
-primary key (cname, fname, rdate)
-);
 
 CREATE TABLE Supervisors (
 	sname 			VARCHAR(20) NOT NULL,
@@ -128,4 +120,13 @@ FOREIGN KEY (Tid) REFERENCES Tasks(tid),
 FOREIGN KEY (fname) REFERENCES Freelancers(fname),
 FOREIGN KEY (cname) REFERENCES Customers(cname),
 FOREIGN KEY (sname) REFERENCES Supervisors(sname)
+);
+
+create table Reviews (
+cname 				varchar(100) references Customers(cname),
+fname 				varchar(100) references Freelancers(fname),
+rating 				integer,
+review				varchar(100),
+rdate 				varchar(10),
+primary key (cname, fname, rdate)
 );
