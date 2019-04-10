@@ -39,7 +39,7 @@ router.post('/',function(req, res, next){
 
   var phonenumber = req.body.phonenumber;
   var areacode = req.body.areacode;
-  var name = req.session.user;  
+  var name = req.session.user;
   var new_contact_insert = contact_insert + "('" + name + "','" + phonenumber + "','" + areacode + "')";
   pool.query(new_contact_insert, (err, data) => {
     res.redirect('/freelancer_index')

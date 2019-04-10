@@ -75,9 +75,7 @@ firstname 		varchar(60),
 lastname  varchar(60),
 Gender		varchar(10),
 password 	VARCHAR(20),
-Specid 		integer,
-PRIMARY KEY (fname),
-FOREIGN KEY (Specid) REFERENCES Specializations(Specid)
+PRIMARY KEY (fname)
 );
 
 CREATE TABLE FreelancerSpecs (

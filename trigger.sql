@@ -4,15 +4,18 @@
 create or replace function bid_same_time()
 returns trigger as
 $$
-declare count1 numeric;
+declare newdate varchar(20);
 begin
-	select count(*) into count1
-	from Tasks T1, Tasks T2, BidTasks
-	where New.fname = BidTasks.fname and New.Tid = T1.tid and BidTasks.tid = T2.tid and T1.tdate = T2.tdate;
-	if count1 > 0. then
-		raise notice 'Trigger 1 violated!';
+	select tasks.tdate INTO newdate from tasks where tid=new.tid;
+	if exists (
+			select *
+			from Tasks T natural join BidTasks B
+			where (new.fname = B.fname)
+						and (new.tid != T.tid)
+						and (newdate = T.tdate)) then
+		raise notice 'You cannot bid tasks on the same date!';
 		return NULL;
-	else 
+	else
 		return NEW;
 	end if;
 end;
@@ -28,33 +31,33 @@ execute procedure bid_same_time();
 -- 2
 -- When Freelancer bids for a task, we need to make sure that he has the specialization required for the task
 CREATE OR REPLACE FUNCTION check_spec()
-RETURNS TRIGGER AS 
+RETURNS TRIGGER AS
 $$
-DECLARE count2 NUMERIC;
-DECLARE count3 NUMERIC;
+DECLARE spec NUMERIC;
 BEGIN
-	SELECT Specid INTO count2
+	SELECT Specid INTO spec
 	FROM Tasks
-	WHERE NEW.Tid = Tasks.Tid;
-	SELECT Specid INTO count3
-	FROM Freelancers 
-	WHERE NEW.fname = Freelancers.fname;
-	IF count2 == count3 THEN
-		raise notice 'Trigger 2 violated!';
-		RETURN NEW;
-	ELSE 
+	WHERE NEW.tid = Tasks.tid;
+	IF not exists (
+			select *
+			from FreelancerSpecs F
+			where new.fname = F.fname and spec=F.specid
+	) THEN
+		raise notice 'You need to be have the specialization to bid for the task!';
 		RETURN NULL;
+	ELSE
+		RETURN NEW;
 	END IF;
 END;
 
-$$ 
+$$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER spec_check
 BEFORE INSERT OR UPDATE
 ON Bidtasks					-- Specialization
-FOR EACH ROW 
-EXECUTE PROCEDURE check_spec();	
+FOR EACH ROW
+EXECUTE PROCEDURE check_spec();
 
 
 
@@ -69,7 +72,7 @@ begin
 	where NEW.fname = Contracts.fname
 	and NEW.cname = Contracts.cname;
 	if count4 = 0 then
-		raise notice 'Trigger 3 violated!';
+		raise notice 'You can only review freelancers who have contracts with you!';
 		return NULL;
 	else
 		return NEW;
