@@ -16,7 +16,7 @@ insert into Locations (lid, city, country) values
 (2, 'boston','usa'),
 (3, 'toronto','canada');
 
-insert into Specializations (Specid, DifficultyLevel, Category) values 
+insert into Specializations (Specid, DifficultyLevel, Category) values --
 (1, '5', 'Lifting'),
 (2, '10', 'Cleaning'),
 (3, '7', 'Cooking');
@@ -25,7 +25,7 @@ insert into Customers (cname, firstname, lastname, gender, password) values
 ('Yichen Jiang', 'Yichen', 'Jiang', 'M', '1111'),
 ('Luna Tao', 'Luna', 'Tao', 'F', '1111');
 
-insert into Tasks (tid, description, tdate, lid, Specid, cname, address) values
+insert into Tasks (tid, description, tdate, lid, Specid, cname, address) values --
 (01, 'Hard', '2019-09-01',1, 1, 'Yichen Jiang','Cinnamon College'),
 (02, 'Easy', '2019-09-01',2, 1, 'Yichen Jiang','Tembusu College'),
 (03, 'Intermediate', '2019-11-10',3, 2, 'Yichen Jiang','Residential College'),
